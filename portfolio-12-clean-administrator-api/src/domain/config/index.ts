@@ -1,1 +1,1 @@
-export * from './database.interface';
+export * from './environment.interface';

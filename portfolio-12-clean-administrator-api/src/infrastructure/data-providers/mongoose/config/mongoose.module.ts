@@ -9,10 +9,10 @@ export const getMongooseModuleOptions = (
   config: EnvironmentService,
 ): MongooseModuleOptions => {
   return {
-    uri: `mongodb+srv://${config.getDatabaseHost()}`,
-    dbName: config.getDatabaseName(),
-    user: config.getDatabaseUser(),
-    pass: config.getDatabasePassword(),
+    uri: `mongodb+srv://${config.getMongooseConfig().host}`,
+    dbName: config.getMongooseConfig().database,
+    user: config.getMongooseConfig().user,
+    pass: config.getMongooseConfig().password,
   } as MongooseModuleOptions;
 };
 
