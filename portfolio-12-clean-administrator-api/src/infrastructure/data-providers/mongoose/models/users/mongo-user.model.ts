@@ -5,7 +5,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 // Domain
-import { USER_ROLES_ENUM, USER_STATUS_ENUM, User } from 'src/domain';
+import { USER_STATUS_ENUM, User } from 'src/domain';
 
 @Schema({ timestamps: true })
 export class MongoUser extends Document implements User {
@@ -21,14 +21,8 @@ export class MongoUser extends Document implements User {
   password: string;
   @Prop()
   position: string;
-  @Prop({
-    required: true,
-    enum: USER_ROLES_ENUM,
-    default: USER_ROLES_ENUM.EXTERNAL,
-  })
-  role: USER_ROLES_ENUM;
   @Prop({ required: false })
-  token: string;
+  token?: string;
   @Prop({ required: false, default: Date.now })
   lastConnection: Date;
   @Prop({
@@ -40,7 +34,7 @@ export class MongoUser extends Document implements User {
   @Prop()
   loginCodeVerification: string;
   @Prop()
-  loginCodeExpiration: string;
+  loginCodeExpiration?: Date;
   @Prop({ default: Date.now })
   createdAt: Date;
   @Prop({ default: Date.now })

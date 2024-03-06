@@ -1,4 +1,4 @@
-export interface MongooseConfig {
+export interface DatabaseConfig {
   host: string;
   port: number;
   user: string;
@@ -9,5 +9,6 @@ export interface MongooseConfig {
 }
 
 export interface EnvironmentConfig {
-  getMongooseConfig(): MongooseConfig;
+  getMongooseConfig(): DatabaseConfig;
+  getPostgresConfig(): DatabaseConfig;
 }

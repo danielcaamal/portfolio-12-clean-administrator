@@ -1,4 +1,4 @@
-import { USER_ROLES_ENUM, USER_STATUS_ENUM } from 'src/domain/enums';
+import { USER_STATUS_ENUM } from 'src/domain/enums';
 import { Base } from '../base/base.model';
 
 export class User extends Base {
@@ -10,10 +10,9 @@ export class User extends Base {
   email: string;
   password: string;
   position: string;
-  role: USER_ROLES_ENUM;
-  token: string;
-  lastConnection: Date;
+  token?: string;
+  lastConnection?: Date;
   status: USER_STATUS_ENUM;
-  loginCodeVerification: string;
-  loginCodeExpiration: string;
+  loginCodeVerification?: string;
+  loginCodeExpiration?: Date;
 }

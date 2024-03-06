@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 // Domain
-import { EnvironmentConfig, MongooseConfig } from 'src/domain';
+import { EnvironmentConfig, DatabaseConfig } from 'src/domain';
 
 @Injectable()
 export class EnvironmentService implements EnvironmentConfig {
@@ -17,7 +17,19 @@ export class EnvironmentService implements EnvironmentConfig {
   private readonly DATABASE_SCHEMA = 'DATABASE_SCHEMA';
   private readonly DATABASE_SYNCHRONIZE = 'DATABASE_SYNCHRONIZE';
 
-  getMongooseConfig(): MongooseConfig {
+  getMongooseConfig(): DatabaseConfig {
+    return {
+      database: this.configService.get<string>(this.DATABASE_NAME),
+      host: this.configService.get<string>(this.DATABASE_HOST),
+      password: this.configService.get<string>(this.DATABASE_PASSWORD),
+      port: this.configService.get<number>(this.DATABASE_PORT),
+      schema: this.configService.get<string>(this.DATABASE_SCHEMA),
+      synchronize: this.configService.get<boolean>(this.DATABASE_SYNCHRONIZE),
+      user: this.configService.get<string>(this.DATABASE_USER),
+    };
+  }
+
+  getPostgresConfig(): DatabaseConfig {
     return {
       database: this.configService.get<string>(this.DATABASE_NAME),
       host: this.configService.get<string>(this.DATABASE_HOST),
